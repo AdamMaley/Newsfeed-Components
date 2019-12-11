@@ -88,6 +88,39 @@ const data = [
   }
 ];
 
+
+// MY CODE //
+function articleCreator(data){
+
+let div = document.createElement('div');
+div.classList.add('article');
+
+let hTwo = document.createElement('h2');
+hTwo.textContent = data.title;
+
+let datePara = document.createElement('p');
+datePara.classList.add('date');
+datePara.textContent = data.date;
+
+let firstPara = document.createElement('p');
+firstPara.textContent = data.firstParagraph;
+
+let secondPara = document.createElement('p');
+secondPara.textContent = data.secondParagraph;
+
+let thirdPara = document.createElement('p');
+thirdPara.textContent = data.thirdParagraph;
+
+let buttonSpan = document.createElement('span');
+buttonSpan.classList.add('expandButton');
+buttonSpan.addEventListener("click", (e) => {
+  buttonSpan.classList.toggle("article-open");
+});
+
+}
+
+articleCreator(data);
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -107,7 +140,7 @@ const data = [
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each o#ject and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
