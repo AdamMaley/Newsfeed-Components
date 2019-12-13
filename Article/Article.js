@@ -90,36 +90,49 @@ const data = [
 
 
 // MY CODE //
-function articleCreator(data){
+const articles = document.querySelector('.articles');
+console.log(articles);
 
-let div = document.createElement('div');
-div.classList.add('article');
+// 
+function componentCreator(title,date,p1,p2,p3){
+  const article = document.createElement('div');
+  const titleContent = document.createElement('h2');
+  const titleDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expandSpan = document.createElement('span');
 
-let hTwo = document.createElement('h2');
-hTwo.textContent = data.title;
+  // appending
+  article.appendChild(titleContent);
+  article.appendChild(titleDate);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(expandSpan);
 
-let datePara = document.createElement('p');
-datePara.classList.add('date');
-datePara.textContent = data.date;
+  // classes
+  article.classList.add('article');
+  titleDate.classList.add('date');
+  expandSpan.classList.add('expandButton');
 
-let firstPara = document.createElement('p');
-firstPara.textContent = data.firstParagraph;
+// put content inside elements we created
+  titleContent.textContent = title;
+  titleDate.textContent = date;
+  para1.textContent = p1;
+  para2.textContent = p2;
+  para3.textContent = p3;
+  expandSpan.textContent = "Click To Expand";
 
-let secondPara = document.createElement('p');
-secondPara.textContent = data.secondParagraph;
-
-let thirdPara = document.createElement('p');
-thirdPara.textContent = data.thirdParagraph;
-
-let buttonSpan = document.createElement('span');
-buttonSpan.classList.add('expandButton');
-buttonSpan.addEventListener("click", (e) => {
-  buttonSpan.classList.toggle("article-open");
-});
-
+  expandSpan.addEventListener('click', (e) => {
+    e.article.classList.toggle('article-open');
+  });
+  return article;
 }
 
-articleCreator(data);
+data.map((a) => {
+  return articles.appendChild(componentCreator(a.title, a.date, a.firstParagraph, a.secondParagraph, a.thirdParagraph))
+});
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
