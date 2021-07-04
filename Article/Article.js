@@ -88,6 +88,52 @@ const data = [
   }
 ];
 
+
+// MY CODE //
+const articles = document.querySelector('.articles');
+console.log(articles);
+
+// 
+function componentCreator(title,date,p1,p2,p3){
+  const article = document.createElement('div');
+  const titleContent = document.createElement('h2');
+  const titleDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expandSpan = document.createElement('span');
+
+  // appending
+  article.appendChild(titleContent);
+  article.appendChild(titleDate);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(expandSpan);
+
+  // classes
+  article.classList.add('article');
+  titleDate.classList.add('date');
+  expandSpan.classList.add('expandButton');
+
+// put content inside elements we created
+  titleContent.textContent = title;
+  titleDate.textContent = date;
+  para1.textContent = p1;
+  para2.textContent = p2;
+  para3.textContent = p3;
+  expandSpan.textContent = "Click To Expand";
+
+  expandSpan.addEventListener('click', (e) => {
+    e.article.classList.toggle('article-open');
+  });
+  return article;
+}
+
+data.map((a) => {
+  return articles.appendChild(componentCreator(a.title, a.date, a.firstParagraph, a.secondParagraph, a.thirdParagraph))
+});
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -107,7 +153,7 @@ const data = [
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each o#ject and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
